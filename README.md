@@ -40,7 +40,7 @@
                    !!HYDROXIDE AUXILIARY UNIT IN!!
                 !!YOUR EXPLOIT'S AUTO-EXECUTE FOLDER!!
 ]]--
-asset(oh, "You do not have the Hydroxide auxiliary unit in your auto-execute folder!")
+assert(oh, "You do not have the Hydroxide auxiliary unit in your auto-execute folder!")
 
 oh.load_from_file = false -- Toggle to true if you're modifying Hydroxide files from your PC
 oh.ui = import(4369731232)
