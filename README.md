@@ -17,7 +17,7 @@
 
 ## <a href="https://github.com/nrv-ous/Hydroxide/blob/in-dev/main.lua"><b>main.lua</b></a>
 
-Before you use this script, please make sure you have the auxiliary unit in your exploit's auto-execute folder!
+### Before you use this script, please make sure you have the auxiliary unit in your exploit's auto-execute folder!
 
 ```lua
 --[[
