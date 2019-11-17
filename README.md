@@ -18,7 +18,7 @@
 ## <a href="https://github.com/nrv-ous/Hydroxide/blob/in-dev/main.lua"><b>main.lua</b></a>
 
 <p align="center">
-  <b>Penetration testing tool for games on the Roblox platform.</b>
+  <b>Before you execute, please make sure you have the auxiliary unit in your exploit's auto-execute folder!</b>
 </p>
 
 
