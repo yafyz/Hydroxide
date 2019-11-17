@@ -42,7 +42,7 @@
 ]]--
 asset(oh, "You do not have the Hydroxide auxiliary unit in your auto-execute folder!")
 
-oh.load_from_file = true
+oh.load_from_file = false -- Toggle to true if you're modifying Hydroxide files from your PC
 oh.ui = import(4369731232)
 oh.assets = import(4369733667)
 oh.v_aux = import("visual_aux.lua")
