@@ -1,7 +1,6 @@
 --[[
 
     [o*] : hydroxide_auxiliary.lua
-
         ~ This file contains functions which are used in, but can also be used outside, Hydroxide
 
 ]]
