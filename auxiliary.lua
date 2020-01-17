@@ -92,8 +92,6 @@ aux.dump_table = function(t)
           result = result .. '[' .. aux.transform_path(index:GetFullName()) .. ']'
       elseif class ~= "nil" then
           result = result .. tostring(index)
-      elseif class == "nil" then
-        result = result .. "nil"
       end
       
       if class ~= "number" and class ~= "nil" then
