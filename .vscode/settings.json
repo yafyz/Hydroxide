@@ -42,6 +42,11 @@
         "toclipboard",
         "setclipboard",
         "table_string",
-        "dump_table"
+        "dump_table",
+        "Instance",
+        "nonamecall"
+    ],
+    "Lua.diagnostics.disable": [
+        "undefined-global"
     ]
 }
