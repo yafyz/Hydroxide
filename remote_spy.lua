@@ -50,7 +50,6 @@ local make_params = function(remote, parameters)
     params.Parent = results
     local haspar = false
     for i,_ in next, parameters do haspar = true end
-    if not haspar then parameters[1] = nil end
 
     for i,parameter in next, parameters do
         local __tostring 
@@ -86,7 +85,7 @@ local make_params = function(remote, parameters)
         end
     end
 
-    if nofpar == 0 then
+    if haspar == 0 then
     --    params.Size = params.Size + UDim2.new(0, 0, 0, 16)
     --    local element = assets.RemoteData:Clone()
     --    element.Label.Text = "Called with no arguments"
