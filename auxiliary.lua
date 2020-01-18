@@ -62,8 +62,6 @@ aux.transform_value = function(value)
         result = result .. "ColorSequence.new(" .. dump_table(v.Keypoints) .. ')'
     elseif ttype == "ColorSequenceKeypoint" then
         result = result .. "ColorSequenceKeypoint.new(" .. value.Time .. ", Color3.new(" .. tostring(value.Value) .. "))" 
-    elseif ttype == "nil" then
-        result = result .. "nil"
     else
         if type(value) == "userdata" then
             print(ttype)
