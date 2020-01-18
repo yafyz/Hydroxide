@@ -48,10 +48,11 @@ local make_params = function(remote, parameters)
     local results = inspect.Results
     local params = assets.RemoteDataPod:Clone()
     params.Parent = results
-    local nofpar = 0
+    local haspar = false
+    for i,_ in next, parameters do haspar = true end
+    if not haspar then parameters[1] = nil end
 
     for i,parameter in next, parameters do
-        nofpar = nofpar + 1
         local __tostring 
         local meta_table = env.get_metatable(v)
         local method = meta_table and meta_table.__tostring
@@ -86,17 +87,17 @@ local make_params = function(remote, parameters)
     end
 
     if nofpar == 0 then
-        --params.Size = params.Size + UDim2.new(0, 0, 0, 16)
-        --local element = assets.RemoteData:Clone()
-        --element.Label.Text = "Called with no arguments"
-        --element.Label.TextColor3 = Color3.fromRGB(110, 207, 255)
-        --element.Parent = params
-        --while not element.Label.TextFits do
-        --    element.Size = element.Size + increment
-        --    params.Size = params.Size + increment
-        --    results.CanvasSize = results.CanvasSize + increment
-        --    wait()
-        --end
+    --    params.Size = params.Size + UDim2.new(0, 0, 0, 16)
+    --    local element = assets.RemoteData:Clone()
+    --    element.Label.Text = "Called with no arguments"
+    --    element.Label.TextColor3 = Color3.fromRGB(110, 207, 255)
+    --    element.Parent = params
+    --    while not element.Label.TextFits do
+    --        element.Size = element.Size + increment
+    --        params.Size = params.Size + increment
+    --        results.CanvasSize = results.CanvasSize + increment
+    --        wait()
+    --    end
         local __tostring 
         local meta_table = env.get_metatable(v)
         local method = meta_table and meta_table.__tostring
