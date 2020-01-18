@@ -86,7 +86,7 @@ local make_params = function(remote, parameters)
     end
 
     if nofpar == 0 then
-        params.Size = UDim2.new(0, 0, 0, 16)
+        params.Size = params.Size + UDim2.new(0, 0, 0, 16)
         print(nofpar)
     else 
         warn(nofpar)
