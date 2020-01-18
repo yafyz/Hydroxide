@@ -89,7 +89,7 @@ local make_params = function(remote, parameters)
         params.Size = params.Size + UDim2.new(0, 0, 0, 16)
         local element = assets.RemoteData:Clone()
         element.Label.Text = "Called with no arguments"
-        element.Label.TextColor3 = Color3.fromRGB(0, 102, 255)
+        element.Label.TextColor3 = Color3.fromRGB(0, 170, 255)
         element.Parent = params
     end
 

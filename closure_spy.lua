@@ -22,7 +22,7 @@ dump_table = function(t)
         elseif type(v) == "string" then
             result = result .. '"' .. v .. '"'
         else
-            result = result .. tostring(v)
+            result = result .. (tostring(v) or "nil")
         end
         result = result .. ', '
     end
