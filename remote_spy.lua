@@ -87,6 +87,8 @@ local make_params = function(remote, parameters)
 
     if nofpar == 0 then
         params.Size = UDim2.new(0, 0, 0, 16)
+    else 
+        print(nofpar)
     end
 
     params.MouseButton2Click:Connect(function()
