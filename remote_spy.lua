@@ -48,8 +48,10 @@ local make_params = function(remote, parameters)
     local results = inspect.Results
     local params = assets.RemoteDataPod:Clone()
     params.Parent = results
+    local nofpar = 0
 
     for i,parameter in next, parameters do
+        nofpar = nofpar + 1
         local __tostring 
         local meta_table = env.get_metatable(v)
         local method = meta_table and meta_table.__tostring
@@ -81,6 +83,10 @@ local make_params = function(remote, parameters)
             meta_table.__tostring = __tostring
             env.set_readonly(meta_table, true)
         end
+    end
+
+    if nofpar == 0 then
+        params.Size = UDim2.new(0, 0, 0, 16)
     end
 
     params.MouseButton2Click:Connect(function()

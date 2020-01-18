@@ -69,7 +69,11 @@ aux.transform_value = function(value)
             print(ttype)
         end
         
-        result = result .. tostring(value)
+        if not pcall(function()
+            result = result .. tostring(value)
+        end) then
+            result = result .. "nil" .. " --[[ Userdata thing bruh ]]"
+        end
     end
 
     return result
