@@ -86,16 +86,47 @@ local make_params = function(remote, parameters)
     end
 
     if nofpar == 0 then
-        params.Size = params.Size + UDim2.new(0, 0, 0, 16)
+        --params.Size = params.Size + UDim2.new(0, 0, 0, 16)
+        --local element = assets.RemoteData:Clone()
+        --element.Label.Text = "Called with no arguments"
+        --element.Label.TextColor3 = Color3.fromRGB(110, 207, 255)
+        --element.Parent = params
+        --while not element.Label.TextFits do
+        --    element.Size = element.Size + increment
+        --    params.Size = params.Size + increment
+        --    results.CanvasSize = results.CanvasSize + increment
+        --    wait()
+        --end
+        local __tostring 
+        local meta_table = env.get_metatable(v)
+        local method = meta_table and meta_table.__tostring
+
+        if method then
+            print(method)
+            __tostring = method
+            env.set_readonly(meta_table, false)
+            meta_table.__tostring = nil
+        end
+
         local element = assets.RemoteData:Clone()
-        element.Label.Text = "Called with no arguments"
-        element.Label.TextColor3 = Color3.fromRGB(110, 207, 255)
+        --element.Icon.Image = oh.icons[type(parameter)]
+        element.Label.Text = "Called with no arguments"--(typeof(parameter) == "Instance" and parameter.Name) or tostring(parameter)
         element.Parent = params
+
+        local increment = UDim2.new(0, 0, 0, 16)
+        params.Size = params.Size + increment
+        results.CanvasSize = results.CanvasSize + increment
+
         while not element.Label.TextFits do
             element.Size = element.Size + increment
             params.Size = params.Size + increment
             results.CanvasSize = results.CanvasSize + increment
             wait()
+        end
+
+        if __tostring then
+            meta_table.__tostring = __tostring
+            env.set_readonly(meta_table, true)
         end
     end
 
