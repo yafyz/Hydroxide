@@ -87,7 +87,10 @@ local make_params = function(remote, parameters)
 
     if nofpar == 0 then
         params.Size = params.Size + UDim2.new(0, 0, 0, 16)
-        element.Label.Text = "No parameters"
+        local element = assets.RemoteData:Clone()
+        element.Icon.Image = oh.icons[type(parameter)]
+        element.Label.Text = "Called with no arguments"
+        element.Parent = params
     end
 
     params.MouseButton2Click:Connect(function()
