@@ -81,6 +81,7 @@ aux.dump_table = function(t)
     local result = "{ "
 
     for i,v in next, t do
+        print(i,v)
       local class = typeof(index)
 
       if class == "table" then
