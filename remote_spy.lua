@@ -87,9 +87,8 @@ local make_params = function(remote, parameters)
 
     if nofpar == 0 then
         params.Size = params.Size + UDim2.new(0, 0, 0, 16)
-        print(nofpar)
-    else 
-        warn(nofpar)
+        element.Label.Text = "No parameters"
+        --print(nofpar)
     end
 
     params.MouseButton2Click:Connect(function()
