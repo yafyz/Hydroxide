@@ -91,6 +91,12 @@ local make_params = function(remote, parameters)
         element.Label.Text = "Called with no arguments"
         element.Label.TextColor3 = Color3.fromRGB(110, 207, 255)
         element.Parent = params
+        while not element.Label.TextFits do
+            element.Size = element.Size + increment
+            params.Size = params.Size + increment
+            results.CanvasSize = results.CanvasSize + increment
+            wait()
+        end
     end
 
     params.MouseButton2Click:Connect(function()
