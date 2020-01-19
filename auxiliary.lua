@@ -78,7 +78,7 @@ aux.transform_value = function(value)
 end
 
 aux.dump_table = function(t)
-    print('newe')
+    print('newa')
     local result = "{ "
     local length = 0
     for i,_ in next, t do length = i end
@@ -86,7 +86,7 @@ aux.dump_table = function(t)
 
     if typeof(length) == "number" then
         for i=1,length do
-          local index = t[i]
+          --local index = t[i]
           local class = typeof(index)
 
           if class == "table" then
