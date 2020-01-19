@@ -50,7 +50,7 @@ local make_params = function(remote, parameters)
     params.Parent = results
     local length = 0
     for i,_ in next, parameters do length = i end
-    if length == 0 then length = 1 end
+    if length == 0 then length = 1 print('nope') end
     if typeof(length) == "number" then
         for i=1,length do
             local parameter = parameters[i]
