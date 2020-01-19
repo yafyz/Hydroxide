@@ -78,7 +78,7 @@ aux.transform_value = function(value)
 end
 
 aux.dump_table = function(t)
-    print('newa')
+    print('newb')
     local result = "{ "
     local length = 0
     for i,_ in next, t do length = i end
