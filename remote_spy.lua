@@ -48,44 +48,81 @@ local make_params = function(remote, parameters)
     local results = inspect.Results
     local params = assets.RemoteDataPod:Clone()
     params.Parent = results
-    local haspar = false
-    for i,_ in next, parameters do haspar = true end
+    local length = false
+    for i,_ in next, parameters do length = i end
 
-    for i,parameter in next, parameters do
-        local __tostring 
-        local meta_table = env.get_metatable(v)
-        local method = meta_table and meta_table.__tostring
+    if tonumber(length) then
+        --for i,parameter in next, parameters do
+        for i=1,length do
+            local parameter = parameters[i]
+            local __tostring 
+            local meta_table = env.get_metatable(v)
+            local method = meta_table and meta_table.__tostring
 
-        if method then
-            print(method)
-            __tostring = method
-            env.set_readonly(meta_table, false)
-            meta_table.__tostring = nil
-        end
+            if method then
+                print(method)
+                __tostring = method
+                env.set_readonly(meta_table, false)
+                meta_table.__tostring = nil
+            end
 
-        local element = assets.RemoteData:Clone()
-        element.Icon.Image = oh.icons[type(parameter)]
-        element.Label.Text = (typeof(parameter) == "Instance" and parameter.Name) or tostring(parameter)
-        element.Parent = params
+            local element = assets.RemoteData:Clone()
+            element.Icon.Image = oh.icons[type(parameter)]
+            element.Label.Text = (typeof(parameter) == "Instance" and parameter.Name) or tostring(parameter)
+            element.Parent = params
 
-        local increment = UDim2.new(0, 0, 0, 16)
-        params.Size = params.Size + increment
-        results.CanvasSize = results.CanvasSize + increment
-
-        while not element.Label.TextFits do
-            element.Size = element.Size + increment
+            local increment = UDim2.new(0, 0, 0, 16)
             params.Size = params.Size + increment
             results.CanvasSize = results.CanvasSize + increment
-            wait()
-        end
 
-        if __tostring then
-            meta_table.__tostring = __tostring
-            env.set_readonly(meta_table, true)
+            while not element.Label.TextFits do
+                element.Size = element.Size + increment
+                params.Size = params.Size + increment
+                results.CanvasSize = results.CanvasSize + increment
+                wait()
+            end
+
+            if __tostring then
+                meta_table.__tostring = __tostring
+                env.set_readonly(meta_table, true)
+            end
+        end
+    else
+        for i,parameter in next, parameters do
+            local __tostring 
+            local meta_table = env.get_metatable(v)
+            local method = meta_table and meta_table.__tostring
+
+            if method then
+                print(method)
+                __tostring = method
+                env.set_readonly(meta_table, false)
+                meta_table.__tostring = nil
+            end
+
+            local element = assets.RemoteData:Clone()
+            element.Icon.Image = oh.icons[type(parameter)]
+            element.Label.Text = (typeof(parameter) == "Instance" and parameter.Name) or tostring(parameter)
+            element.Parent = params
+
+            local increment = UDim2.new(0, 0, 0, 16)
+            params.Size = params.Size + increment
+            results.CanvasSize = results.CanvasSize + increment
+
+            while not element.Label.TextFits do
+                element.Size = element.Size + increment
+                params.Size = params.Size + increment
+                results.CanvasSize = results.CanvasSize + increment
+                wait()
+            end
+
+            if __tostring then
+                meta_table.__tostring = __tostring
+                env.set_readonly(meta_table, true)
+            end
         end
     end
-
-    if haspar == 0 then
+    --if haspar == 0 then
     --    params.Size = params.Size + UDim2.new(0, 0, 0, 16)
     --    local element = assets.RemoteData:Clone()
     --    element.Label.Text = "Called with no arguments"
@@ -97,38 +134,7 @@ local make_params = function(remote, parameters)
     --        results.CanvasSize = results.CanvasSize + increment
     --        wait()
     --    end
-        local __tostring 
-        local meta_table = env.get_metatable(v)
-        local method = meta_table and meta_table.__tostring
-
-        if method then
-            print(method)
-            __tostring = method
-            env.set_readonly(meta_table, false)
-            meta_table.__tostring = nil
-        end
-
-        local element = assets.RemoteData:Clone()
-        --element.Icon.Image = oh.icons[type(parameter)]
-        element.Label.Text = "Called with no arguments"--(typeof(parameter) == "Instance" and parameter.Name) or tostring(parameter)
-        element.Parent = params
-
-        local increment = UDim2.new(0, 0, 0, 16)
-        params.Size = params.Size + increment
-        results.CanvasSize = results.CanvasSize + increment
-
-        while not element.Label.TextFits do
-            element.Size = element.Size + increment
-            params.Size = params.Size + increment
-            results.CanvasSize = results.CanvasSize + increment
-            wait()
-        end
-
-        if __tostring then
-            meta_table.__tostring = __tostring
-            env.set_readonly(meta_table, true)
-        end
-    end
+    --end
 
     params.MouseButton2Click:Connect(function()
         local old = env.get_thread_context()

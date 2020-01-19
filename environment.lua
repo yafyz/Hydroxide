@@ -34,7 +34,8 @@ oh.icons = {
     boolean = "rbxassetid://3285671510",
     table = "rbxassetid://3285651068",
     ["function"] = "rbxassetid://3285661880",
-    userdata = "rbxassetid://3285664726"
+    userdata = "rbxassetid://3285664726",
+    ["nil"] = "rbxassetid://3285671510"
 }
 
 oh.event_list = {}
