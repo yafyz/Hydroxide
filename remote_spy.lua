@@ -50,7 +50,7 @@ local make_params = function(remote, parameters)
     params.Parent = results
     local length = 0
     for i,_ in next, parameters do length = i end
-    if length == 0 then length = 1 print('nope') end
+    if length == 0 then length = 1 end
     if typeof(length) == "number" then
         for i=1,length do
             local parameter = parameters[i]
@@ -121,19 +121,6 @@ local make_params = function(remote, parameters)
             end
         end
     end
-    --if haspar == 0 then
-    --    params.Size = params.Size + UDim2.new(0, 0, 0, 16)
-    --    local element = assets.RemoteData:Clone()
-    --    element.Label.Text = "Called with no arguments"
-    --    element.Label.TextColor3 = Color3.fromRGB(110, 207, 255)
-    --    element.Parent = params
-    --    while not element.Label.TextFits do
-    --        element.Size = element.Size + increment
-    --        params.Size = params.Size + increment
-    --        results.CanvasSize = results.CanvasSize + increment
-    --        wait()
-    --    end
-    --end
 
     params.MouseButton2Click:Connect(function()
         local old = env.get_thread_context()

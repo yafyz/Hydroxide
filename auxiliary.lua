@@ -81,6 +81,7 @@ aux.dump_table = function(t)
     local result = "{ "
 
     for i,v in next, t do
+        print(i,v)
       local class = typeof(index)
 
       if class == "table" then
@@ -94,8 +95,6 @@ aux.dump_table = function(t)
       elseif class == "number" then
       elseif class == "Instance" then
           result = result .. '[' .. aux.transform_path(index:GetFullName()) .. ']'
-      elseif class ~= "nil" then
-          result = result .. tostring(index)
       end
       
       if class ~= "number" and class ~= "nil" then
