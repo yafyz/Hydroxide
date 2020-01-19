@@ -78,6 +78,7 @@ aux.transform_value = function(value)
 end
 
 aux.dump_table = function(t)
+    print('new')
     local result = "{ "
     local length = 0
     for i,_ in next, parameters do length = i end
