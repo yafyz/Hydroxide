@@ -78,14 +78,15 @@ aux.transform_value = function(value)
 end
 
 aux.dump_table = function(t)
-    print('new')
+    print('new2')
     local result = "{ "
     local length = 0
-    for i,_ in next, parameters do length = i end
+    for i,_ in next, t do length = i end
     if length == 0 then length = 1 end
 
     if typeof(length) == "number" then
         for i=1,length do
+          local index = t[i]
           local class = typeof(index)
 
           if class == "table" then
