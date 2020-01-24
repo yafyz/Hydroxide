@@ -104,6 +104,7 @@ aux.dump_table = function(t)
       local class = typeof(index)
       
       if index == filler then
+        print('oh yea i got over here')
       elseif class == "table" then
           result = result .. '[' .. aux.dump_table(index) .. ']'
       elseif class == "string" then
