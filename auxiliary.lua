@@ -37,11 +37,13 @@ aux.transform_path = function(path)
 
     return "game" .. result
 end
-aux.transform_value = function(value)
+aux.transform_value = function(value, filler)
     local result = ""
     local ttype = typeof(value)
-  
-    if ttype == "table" then
+    print(value, ttype)
+    if value == filler then
+        result = result + "nil"
+    elseif ttype == "table" then
         result = result .. aux.dump_table(value) 
     elseif ttype == "string" then
         result = result .. '"' .. value .. '"'
@@ -74,7 +76,7 @@ aux.transform_value = function(value)
 end
 
 aux.dump_table = function(t)
-    print('dump table teeest version ==',6)
+    print('dump table teeest version ==',7)
     local filler
     local lindex = 0
     local actualsize = 0
@@ -100,9 +102,7 @@ aux.dump_table = function(t)
     local result = "{ "
 
     for i,v in next, t do
-      --if index == filler then index = nil end
       local class = typeof(index)
-      print(index, typeof(index), class)
       if class == "table" then
           result = result .. '[' .. aux.dump_table(index) .. ']'
       elseif class == "string" then
@@ -122,7 +122,7 @@ aux.dump_table = function(t)
         result = result .. " = "
       end
 
-      result = result .. aux.transform_value(v) .. ', '
+      result = result .. aux.transform_value(v, filler) .. ', '
     end
 
     if result:sub(result:len() - 1, result:len()) == ", " then
