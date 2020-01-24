@@ -64,7 +64,6 @@ local make_params = function(remote, parameters)
     local res, err = pcall(function ()
         for i=1, lindex do
             if not parameters[i] then
-                --parameters[i] = not parameters[i] and filler or parameters[i]
                 parameters[i] = filler
             end
         end
