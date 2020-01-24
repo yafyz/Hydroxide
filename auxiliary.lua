@@ -74,7 +74,7 @@ aux.transform_value = function(value)
 end
 
 aux.dump_table = function(t)
-    print('dump table test version ==',1)
+    print('dump table test version ==',2)
     local filler
     local lindex = 0
     local actualsize = 0
@@ -100,22 +100,21 @@ aux.dump_table = function(t)
     local result = "{ "
 
     for i,v in next, t do
-      if index == filler then index = nil end
-      local class = typeof(index)
+      local class = typeof(v)
 
       if class == "table" then
-          result = result .. '[' .. aux.dump_table(index) .. ']'
+          result = result .. '[' .. aux.dump_table(v) .. ']'
       elseif class == "string" then
-          if index:find("%A") then
-              result = result .. "[\"" .. index .. "\"]"
+          if v:find("%A") then
+              result = result .. "[\"" .. v .. "\"]"
           else
-              result = result .. index
+              result = result .. v
           end
       elseif class == "number" then
       elseif class == "Instance" then
-          result = result .. '[' .. aux.transform_path(index:GetFullName()) .. ']'
+          result = result .. '[' .. aux.transform_path(v:GetFullName()) .. ']'
       elseif class ~= "nil" then
-          result = result .. tostring(index)
+          result = result .. tostring(v)
       end
       
       if class ~= "number" and class ~= "nil" then
