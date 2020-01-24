@@ -102,10 +102,8 @@ aux.dump_table = function(t)
     for i,v in next, t do
       --if index == filler then index = nil end
       local class = typeof(index)
-      
-      if index == filler then
-        print('oh yea i got over here')
-      elseif class == "table" then
+      print(index)
+      if class == "table" then
           result = result .. '[' .. aux.dump_table(index) .. ']'
       elseif class == "string" then
           if index:find("%A") then
