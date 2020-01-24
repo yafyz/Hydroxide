@@ -70,7 +70,7 @@ local make_params = function(remote, parameters)
         end
     end)
     if not res then
-        print('uh oh, a fucky wucky prevented us from detecting nil, err:', err)
+        print('uh oh, a fucky wucky prevented us from detecting nil arguments, err:', err)
     end
     for i,parameter in next, parameters do
         if parameter == filler then parameter = nil end
