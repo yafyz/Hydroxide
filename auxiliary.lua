@@ -74,7 +74,7 @@ aux.transform_value = function(value)
 end
 
 aux.dump_table = function(t)
-    print('dump table test version ==',3)
+    print('pleaseeeee load the new one dump table test version ==',3)
     local filler
     local lindex = 0
     local actualsize = 0
