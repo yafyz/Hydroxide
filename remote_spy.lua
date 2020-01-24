@@ -45,19 +45,22 @@ local hook_to = {
 
 -- C O R E
 local make_params = function(remote, parameters)
-    print('test version ==',2)
+    print('test version ==',3)
     local results = inspect.Results
     local params = assets.RemoteDataPod:Clone()
     params.Parent = results
 
     local filler
     local lindex = 0
+    local actualsize = 0
     for i=1, 10 do
         filler = (filler or "") .. string.char(math.floor(math.random() * 94 + 33))
     end
     for i,_ in next, parameters do
         lindex = typeof(i) == "number" and i > lindex and i or lindex
+        actualsize = actualsize + 1
     end
+    if actualsize == 0 then parameters[1] = filler end
     local res, err = pcall(function ()
         for i=1, lindex do
             if not parameters[i] then
