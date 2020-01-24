@@ -67,71 +67,40 @@ aux.transform_value = function(value)
             print(ttype)
         end
         
-        if not pcall(function()
-            result = result .. tostring(value)
-        end) then
-            result = result .. "nil" .. " --[[ Userdata thing bruh ]]"
-        end
+        result = result .. tostring(value)
     end
 
     return result
 end
 
 aux.dump_table = function(t)
-    print('newb')
     local result = "{ "
-    local length = 0
-    for i,_ in next, t do length = i end
-    if length == 0 then length = 1 end
 
-    if typeof(length) == "number" then
-        for i=1,length do
-          local index = t[i]
-          local class = typeof(index)
+    for i,v in next, t do
+      local class = typeof(index)
 
-          if class == "table" then
-              result = result .. '[' .. aux.dump_table(index) .. ']'
-          elseif class == "string" then
-              if index:find("%A") then
-                  result = result .. "[\"" .. index .. "\"]"
-              else
-                  result = result .. index
-              end
-          elseif class == "number" then
-          elseif class == "Instance" then
-              result = result .. '[' .. aux.transform_path(index:GetFullName()) .. ']'
+      if class == "table" then
+          result = result .. '[' .. aux.dump_table(index) .. ']'
+      elseif class == "string" then
+          if index:find("%A") then
+              result = result .. "[\"" .. index .. "\"]"
+          else
+              result = result .. index
           end
+      elseif class == "number" then
+      elseif class == "Instance" then
+          result = result .. '[' .. aux.transform_path(index:GetFullName()) .. ']'
+      elseif class ~= "nil" then
+          result = result .. tostring(index)
+      end
+      
+      if class ~= "number" and class ~= "nil" then
+        result = result .. " = "
+      end
 
-          if class ~= "number" and class ~= "nil" then
-            result = result .. " = "
-          end
-
-          result = result .. aux.transform_value(v) .. ', '
-        end
-    else
-        for i,v in next, t do
-          local class = typeof(index)
-
-          if class == "table" then
-              result = result .. '[' .. aux.dump_table(index) .. ']'
-          elseif class == "string" then
-              if index:find("%A") then
-                  result = result .. "[\"" .. index .. "\"]"
-              else
-                  result = result .. index
-              end
-          elseif class == "number" then
-          elseif class == "Instance" then
-              result = result .. '[' .. aux.transform_path(index:GetFullName()) .. ']'
-          end
-
-          if class ~= "number" and class ~= "nil" then
-            result = result .. " = "
-          end
-
-          result = result .. aux.transform_value(v) .. ', '
-        end
+      result = result .. aux.transform_value(v) .. ', '
     end
+
     if result:sub(result:len() - 1, result:len()) == ", " then
         result = result:sub(1, result:len() - 2)
     end

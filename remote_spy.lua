@@ -58,12 +58,19 @@ local make_params = function(remote, parameters)
     for i,_ in next, parameters do
         lindex = typeof(i) == "number" and i > lindex and i or lindex
     end
-
-    for i=1, lindex do
-        parameters[i] = not parameters[i] and filler or parameters[i]
+    local res, err = pcall(function ()
+        for i=1, lindex do
+            if not parameters[i] then
+                --parameters[i] = not parameters[i] and filler or parameters[i]
+                parameters[i] = filler
+            end
+        end
+    end)
+    if not res then
+        print('uh oh, a fucky wucky prevented us from detecting nil, err:', err)
     end
-
     for i,parameter in next, parameters do
+        if parameter == filler then parameter = nil end
         local __tostring 
         local meta_table = env.get_metatable(v)
         local method = meta_table and meta_table.__tostring
