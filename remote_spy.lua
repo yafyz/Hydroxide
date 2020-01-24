@@ -48,77 +48,51 @@ local make_params = function(remote, parameters)
     local results = inspect.Results
     local params = assets.RemoteDataPod:Clone()
     params.Parent = results
-    local length = 0
-    for i,_ in next, parameters do length = i end
-    if length == 0 then length = 1 end
-    if typeof(length) == "number" then
-        for i=1,length do
-            local parameter = parameters[i]
-            local __tostring 
-            local meta_table = env.get_metatable(v)
-            local method = meta_table and meta_table.__tostring
 
-            if method then
-                print(method)
-                __tostring = method
-                env.set_readonly(meta_table, false)
-                meta_table.__tostring = nil
-            end
+    local filler
+    local lindex = 0
+    for i=1, 10 do
+        filler = (filler or "") .. string.char(math.floor(math.random() * 94 + 33))
+    end
+    for i,_ in next, parameters do
+        lindex = typeof(i) == "number" and i > lindex and i or lindex
+    end
 
-            local element = assets.RemoteData:Clone()
-            element.Icon.Image = oh.icons[type(parameter)]
-            element.Label.Text = (typeof(parameter) == "Instance" and parameter.Name) or tostring(parameter)
-            element.Parent = params
+    for i=1, lindex do
+        parameters[i] = not parameters[i] and filler or parameters[i]
+    end
 
-            local increment = UDim2.new(0, 0, 0, 16)
-            params.Size = params.Size + increment
-            results.CanvasSize = results.CanvasSize + increment
+    for i,parameter in next, parameters do
+        local __tostring 
+        local meta_table = env.get_metatable(v)
+        local method = meta_table and meta_table.__tostring
 
-            while not element.Label.TextFits do
-                element.Size = element.Size + increment
-                params.Size = params.Size + increment
-                results.CanvasSize = results.CanvasSize + increment
-                wait()
-            end
-
-            if __tostring then
-                meta_table.__tostring = __tostring
-                env.set_readonly(meta_table, true)
-            end
+        if method then
+            print(method)
+            __tostring = method
+            env.set_readonly(meta_table, false)
+            meta_table.__tostring = nil
         end
-    else
-        for i,parameter in next, parameters do
-            local __tostring 
-            local meta_table = env.get_metatable(v)
-            local method = meta_table and meta_table.__tostring
 
-            if method then
-                print(method)
-                __tostring = method
-                env.set_readonly(meta_table, false)
-                meta_table.__tostring = nil
-            end
+        local element = assets.RemoteData:Clone()
+        element.Icon.Image = oh.icons[type(parameter)]
+        element.Label.Text = (typeof(parameter) == "Instance" and parameter.Name) or tostring(parameter)
+        element.Parent = params
 
-            local element = assets.RemoteData:Clone()
-            element.Icon.Image = oh.icons[type(parameter)]
-            element.Label.Text = (typeof(parameter) == "Instance" and parameter.Name) or tostring(parameter)
-            element.Parent = params
+        local increment = UDim2.new(0, 0, 0, 16)
+        params.Size = params.Size + increment
+        results.CanvasSize = results.CanvasSize + increment
 
-            local increment = UDim2.new(0, 0, 0, 16)
+        while not element.Label.TextFits do
+            element.Size = element.Size + increment
             params.Size = params.Size + increment
             results.CanvasSize = results.CanvasSize + increment
+            wait()
+        end
 
-            while not element.Label.TextFits do
-                element.Size = element.Size + increment
-                params.Size = params.Size + increment
-                results.CanvasSize = results.CanvasSize + increment
-                wait()
-            end
-
-            if __tostring then
-                meta_table.__tostring = __tostring
-                env.set_readonly(meta_table, true)
-            end
+        if __tostring then
+            meta_table.__tostring = __tostring
+            env.set_readonly(meta_table, true)
         end
     end
 

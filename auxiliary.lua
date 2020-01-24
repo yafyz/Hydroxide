@@ -86,7 +86,7 @@ aux.dump_table = function(t)
 
     if typeof(length) == "number" then
         for i=1,length do
-          --local index = t[i]
+          local index = t[i]
           local class = typeof(index)
 
           if class == "table" then
