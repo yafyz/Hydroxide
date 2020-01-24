@@ -74,7 +74,7 @@ aux.transform_value = function(value)
 end
 
 aux.dump_table = function(t)
-    print('dump table teeest version ==',5)
+    print('dump table teeest version ==',6)
     local filler
     local lindex = 0
     local actualsize = 0
@@ -102,7 +102,7 @@ aux.dump_table = function(t)
     for i,v in next, t do
       --if index == filler then index = nil end
       local class = typeof(index)
-      print(index)
+      print(index, typeof(index), class)
       if class == "table" then
           result = result .. '[' .. aux.dump_table(index) .. ']'
       elseif class == "string" then
