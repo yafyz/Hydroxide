@@ -41,3 +41,4 @@ import("remote_spy.lua")
 import("upvalue_scanner.lua")
 
 oh.initialize()
+oh.initializeFiller()
