@@ -133,15 +133,15 @@ local to_script = function(remote, parameters)
     for i=1, 10 do
         filler = (filler or "") .. string.char(math.floor(math.random() * 94 + 33))
     end
-    for i,_ in next, t do
+    for i,_ in next, parameters do
         lindex = typeof(i) == "number" and i > lindex and i or lindex
         actualsize = actualsize + 1
     end
-    if actualsize == 0 then t[1] = filler end
+    if actualsize == 0 then parameters[1] = filler end
     local res, err = pcall(function ()
         for i=1, lindex do
-            if not t[i] then
-                t[i] = filler
+            if not parameters[i] then
+                parameters[i] = filler
             end
         end
     end)
