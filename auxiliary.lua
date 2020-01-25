@@ -102,8 +102,8 @@ aux.dump_table = function(t)
     local result = "{ "
 
     for i,v in next, t do
-      if v == filler then v = nil end
-      if index == filler then index = nil end
+      if v == filler then v = nil t[i] = nil end
+      if index == filler then index = nil t[i] = nil end
       local class = typeof(index)
       if class == "table" then
           result = result .. '[' .. aux.dump_table(index) .. ']'
