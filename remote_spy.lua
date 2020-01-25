@@ -50,12 +50,12 @@ local make_params = function(remote, parameters)
     local params = assets.RemoteDataPod:Clone()
     params.Parent = results
 
-    local filler = oh.filler
+    local filler
     local lindex = 0
     local actualsize = 0
-    --for i=1, 10 do
-    --    filler = (filler or "") .. string.char(math.floor(math.random() * 94 + 33))
-    --end
+    for i=1, 10 do
+        filler = (filler or "") .. string.char(math.floor(math.random() * 94 + 33))
+    end
     for i,_ in next, parameters do
         lindex = typeof(i) == "number" and i > lindex and i or lindex
         actualsize = actualsize + 1
