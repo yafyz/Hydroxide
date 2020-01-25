@@ -52,7 +52,6 @@ oh.initializeFiller = coroutine.resume(coroutine.create(function()
             filler = (filler or "") .. string.char(math.floor(math.random() * 94 + 33))
         end
         oh.filler = filler
-        print(filler)
         wait(1)
     end
 end))
