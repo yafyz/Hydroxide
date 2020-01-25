@@ -133,15 +133,15 @@ local to_script = function(remote, parameters)
     for i=1, 10 do
         filler = (filler or "") .. string.char(math.floor(math.random() * 94 + 33))
     end
-    for i,_ in next, parameters do
+    for i,_ in next, t do
         lindex = typeof(i) == "number" and i > lindex and i or lindex
         actualsize = actualsize + 1
     end
-    if actualsize == 0 then parameters[1] = filler end
+    if actualsize == 0 then t[1] = filler end
     local res, err = pcall(function ()
         for i=1, lindex do
-            if not parameters[i] then
-                parameters[i] = filler
+            if not t[i] then
+                t[i] = filler
             end
         end
     end)
@@ -150,7 +150,7 @@ local to_script = function(remote, parameters)
     end
 
     for i,value in next, parameters do
-        if value == filler then return end--value = nil parameters[i] = nil end
+        if value == filler then value = nil parameters[i] = nil end
         result = result .. "local oh" .. i .. " = "
         result = result .. aux.transform_value(value).. '\n'
     end
@@ -158,7 +158,6 @@ local to_script = function(remote, parameters)
     local call_params = ""
 
     for i = 1, #parameters do
-        if parameters[i] == filler then parameters[i] = nil call_params = call_params .. "nil" .. ", " end
         call_params = call_params .. "oh" .. i .. ", "
     end
 
