@@ -40,7 +40,7 @@ end
 aux.transform_value = function(value, filler)
     local result = ""
     local ttype = typeof(value)
-
+    print(value, ttype)
     if value == filler then
         result = result .. "nil"
     elseif ttype == "table" then
@@ -77,12 +77,12 @@ end
 
 aux.dump_table = function(t)
     print('dump table teeest version ==',7)
-    local filler = oh.filler
+    local filler
     local lindex = 0
     local actualsize = 0
-    --for i=1, 10 do
-    --    filler = (filler or "") .. string.char(math.floor(math.random() * 94 + 33))
-    --end
+    for i=1, 10 do
+        filler = (filler or "") .. string.char(math.floor(math.random() * 94 + 33))
+    end
     for i,_ in next, t do
         lindex = typeof(i) == "number" and i > lindex and i or lindex
         actualsize = actualsize + 1

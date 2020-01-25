@@ -45,15 +45,4 @@ oh.initialize = function()
     oh.running = true
 end
 
-oh.initializeFiller = coroutine.resume(coroutine.create(function()
-    while true do
-        local filler
-        for i=1, 10 do
-            filler = (filler or "") .. string.char(math.floor(math.random() * 94 + 33))
-        end
-        oh.filler = filler
-        wait(1)
-    end
-end))
-
 return environment
