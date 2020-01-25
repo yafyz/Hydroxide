@@ -127,7 +127,30 @@ local to_script = function(remote, parameters)
         BindableFunction = "Invoke"
     })[remote.ClassName]
 
+    local filler
+    local lindex = 0
+    local actualsize = 0
+    for i=1, 10 do
+        filler = (filler or "") .. string.char(math.floor(math.random() * 94 + 33))
+    end
+    for i,_ in next, t do
+        lindex = typeof(i) == "number" and i > lindex and i or lindex
+        actualsize = actualsize + 1
+    end
+    if actualsize == 0 then t[1] = filler end
+    local res, err = pcall(function ()
+        for i=1, lindex do
+            if not t[i] then
+                t[i] = filler
+            end
+        end
+    end)
+    if not res then
+        print('uh oh, a fucky wucky prevented us from detecting nil arguments, err:', err)
+    end
+
     for i,value in next, parameters do
+        if value == filler then value = nil parameters[i] = nil end
         result = result .. "local oh" .. i .. " = "
         result = result .. aux.transform_value(value).. '\n'
     end
