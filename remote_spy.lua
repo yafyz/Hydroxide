@@ -150,7 +150,7 @@ local to_script = function(remote, parameters)
     end
 
     for i,value in next, parameters do
-        if value == filler then value = nil parameters[i] = nil end
+        if value == filler then return end--value = nil parameters[i] = nil end
         result = result .. "local oh" .. i .. " = "
         result = result .. aux.transform_value(value).. '\n'
     end
@@ -158,6 +158,7 @@ local to_script = function(remote, parameters)
     local call_params = ""
 
     for i = 1, #parameters do
+        if parameters[i] == filler then parameters[i] = nil call_params = call_params .. "nil" .. ", " end
         call_params = call_params .. "oh" .. i .. ", "
     end
 
