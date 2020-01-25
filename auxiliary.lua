@@ -41,7 +41,7 @@ aux.transform_value = function(value, filler)
     local result = ""
     local ttype = typeof(value)
     if value == filler then
-        result = result + "nil"
+        result = result .. "nil"
     elseif ttype == "table" then
         result = result .. aux.dump_table(value) 
     elseif ttype == "string" then
