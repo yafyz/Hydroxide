@@ -40,7 +40,6 @@ end
 aux.transform_value = function(value, filler)
     local result = ""
     local ttype = typeof(value)
-    print(value, ttype)
     if value == filler then
         result = result .. "nil"
     elseif ttype == "table" then
@@ -76,7 +75,6 @@ aux.transform_value = function(value, filler)
 end
 
 aux.dump_table = function(t)
-    print('dump table teeest version ==',7)
     local filler
     local lindex = 0
     local actualsize = 0
