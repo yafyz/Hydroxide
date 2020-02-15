@@ -45,7 +45,6 @@ local hook_to = {
 
 -- C O R E
 local make_params = function(remote, parameters)
-    print('test version ==',3)
     local results = inspect.Results
     local params = assets.RemoteDataPod:Clone()
     params.Parent = results
